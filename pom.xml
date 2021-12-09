@@ -29,6 +29,27 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+				<cloudHubDeployment>
+					<uri>https://anypoint.mulesoft.com</uri>
+					<muleVersion>4.4.0</muleVersion>
+					<username>prithvik</username>
+					<password>Prithvi@28</password>
+					<applicationName>jmeter</applicationName>
+					<environment>Sandbox</environment>
+					<workers>1</workers>
+					<workerType>MICRO</workerType>
+					<objectStoreV2>true</objectStoreV2>
+					<properties>
+					<anypoint.platform.analytics_base_uri>https://analytics-ingest.eu1.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
+					<anypoint.platform.client_id>2f46346bed724e54a0640fe97c2421bc</anypoint.platform.client_id>
+					<anypoint.platform.client_secret>F24d280164bF46AF98B0D1561F5bFeBd</anypoint.platform.client_secret>
+					<anypoint.platform.base_uri>https://eu1.anypoint.mulesoft.com</anypoint.platform.base_uri>
+					</properties>
+					</cloudHubDeployment>.
+				</configuration>
+
+
 			</plugin>
 		</plugins>
 	</build>
