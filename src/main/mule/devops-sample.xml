@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="65394a8d-e692-4d44-9d93-07c12baae647" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="devops-sampleFlow" doc:id="3881951d-2d71-41f8-89f3-108c2b5258b8" >
+		<http:listener doc:name="Listener" doc:id="7bd69dae-a5b7-41a6-9621-ac59db252bb8" config-ref="HTTP_Listener_config" path="/sample"/>
+		<logger level="INFO" doc:name="Logger" doc:id="bb5527c7-de5b-4e8a-ada4-40c1c0f5db63" message="request initiated"/>
+		<ee:transform doc:name="Transform Message" doc:id="ac31e18c-b6c6-425e-a8ed-bf86b2729a46" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message":"welcome to devops session"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="devops-sampleFlow1" doc:id="05927c7f-6ee0-4632-a612-331448b7a0c6" >
+		<http:listener doc:name="Listener" doc:id="ea2b5b1c-38cf-4070-beee-03697fe87261" config-ref="HTTP_Listener_config" path="/sample/user" allowedMethods="POST"/>
+		<ee:transform doc:name="Transform Message" doc:id="464862bb-8658-48cb-ad85-f33ccba51f7d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message":"updated successfully"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
